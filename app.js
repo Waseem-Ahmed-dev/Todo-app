@@ -1,24 +1,26 @@
-const taskinput = document.querySelector("#taskinput");
-const ol = document.querySelector("ol");
+const input = document.querySelector("#input");
+const ol = document.querySelector("#ol");
 
-const alltodos = [];
+const allTodos = [];
 
-function rendeerTodos() {
-    ol.innerHTML = "";
-    for(let i = 0; i < alltodos.length; i++) {
-        ol.innerHTML += `<li>${alltodos[i]}
-        <button onclick="deledtTodo(${i})">delete</button>
-        <button  onclick="editTodo(${i})">edit</button>
-        </li>`
-    }
+function renderTodo() {
+  ol.innerHTML = "";
+  for (let i = 0; i < allTodos.length; i++) {
+    ol.innerHTML += `<li>
+                ${allTodos[i]}
+                <div class="actions">
+                    <button class="delete-btn" onclick="deleteTodo(${i})">Delete</button>
+                    <button class="edit-btn" onclick="editTodo(${i})">Edit</button>
+                </div>
+            </li>`;
+  }
 }
 
 function addTodo() {
-    alltodos.push(input.value);
-    
-    rendeerTodo();
-    input.value = "";
+  allTodos.push(input.value);
 
+  renderTodo();
+  input.value = "";
 }
 
 function deleteTodo(index) {
@@ -29,7 +31,7 @@ function deleteTodo(index) {
 function editTodo(index) {
   console.log("todo edited", index);
   const updatedVal = prompt("enter updated value", allTodos[index]);
-    // allTodos.splice(index , 1 , updatedVal)
+  //   allTodos.splice(index , 1 , updatedVal)
   allTodos[index] = updatedVal
 
   renderTodo()
